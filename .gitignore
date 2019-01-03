@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/DFC.HTTP.Core/obj
+/DFC.HTTP.Core/bin/Debug/netstandard2.0
+/DFC.HTTP.Core.Tests/bin/Debug/netcoreapp2.1
+/DFC.HTTP.Core.Tests/obj
