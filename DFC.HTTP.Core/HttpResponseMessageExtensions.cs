@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace DFC.HTTP.Core
@@ -100,7 +101,7 @@ namespace DFC.HTTP.Core
 
         #region UnprocessableEntity(422)
 
-        public static HttpResponseMessage UnprocessableEntity(HttpRequestMessage req)
+        public static HttpResponseMessage UnprocessableEntity(HttpRequest req)
         {
             return new HttpResponseMessage((HttpStatusCode)422)
             {
