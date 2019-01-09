@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace DFC.HTTP.Core
 {
-    public static class HttpRequestExtensions
+    public static class HttpRequestHelper
     {
 
         public static async Task<T> GetResourceFromRequest<T>(HttpRequest req)

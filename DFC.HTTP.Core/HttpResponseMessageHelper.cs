@@ -9,10 +9,15 @@ using Newtonsoft.Json;
 
 namespace DFC.HTTP.Core
 {
-    public static class HttpResponseMessageExtensions
+    public static class HttpResponseMessageHelper
     {
 
         #region Ok(200)
+
+        public static HttpResponseMessage Ok()
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
 
         public static HttpResponseMessage Ok(Guid id)
         {
@@ -34,6 +39,10 @@ namespace DFC.HTTP.Core
         #endregion
 
         #region Created(201) 
+        public static HttpResponseMessage Created()
+        {
+            return new HttpResponseMessage(HttpStatusCode.Created);
+        }
 
         public static HttpResponseMessage Created(string resourceJson)
         {
@@ -66,6 +75,11 @@ namespace DFC.HTTP.Core
 
         #region BadRequest(400)
 
+        public static HttpResponseMessage BadRequest()
+        {
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+        }
+
         public static HttpResponseMessage BadRequest(Guid id)
         {
             return new HttpResponseMessage(HttpStatusCode.BadRequest)
@@ -75,18 +89,14 @@ namespace DFC.HTTP.Core
             };
         }
 
-        public static HttpResponseMessage BadRequest()
-        {
-            return new HttpResponseMessage(HttpStatusCode.BadRequest)
-            {
-                Content = new StringContent(JsonConvert.SerializeObject("Customer not created!"),
-                    Encoding.UTF8, ContentApplicationType.ApplicationJSON)
-            };
-        }
-
         #endregion
 
         #region Forbidden(403)
+
+        public static HttpResponseMessage Forbidden()
+        {
+            return new HttpResponseMessage(HttpStatusCode.Forbidden);
+        }
 
         public static HttpResponseMessage Forbidden(Guid id)
         {
@@ -100,6 +110,10 @@ namespace DFC.HTTP.Core
         #endregion
 
         #region UnprocessableEntity(422)
+        public static HttpResponseMessage UnprocessableEntity()
+        {
+            return new HttpResponseMessage((HttpStatusCode) 422);
+        }
 
         public static HttpResponseMessage UnprocessableEntity(HttpRequest req)
         {
