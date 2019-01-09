@@ -75,7 +75,7 @@ namespace DFC.HTTP.Core
             return !req.Headers.TryGetValue(queryStringKey, out StringValues keys) ? string.Empty : keys.FirstOrDefault();
         }
 
-        public static string GetTouchpointId(HttpRequest req)
+        public static string GetDssTouchpointId(HttpRequest req)
         {
             if (req == null)
                 throw new ArgumentNullException("req");
@@ -88,7 +88,20 @@ namespace DFC.HTTP.Core
             return string.IsNullOrEmpty(touchpointId) ? string.Empty : touchpointId;
         }
 
-        public static string GetApimURL(HttpRequest req)
+        public static string GetDssCorrelationId(HttpRequest req)
+        {
+            if (req == null)
+                throw new ArgumentNullException("req");
+
+            if (!req.Headers.ContainsKey("DssCorrelationId"))
+                return string.Empty;
+
+            var correlationId = req.Headers["DssCorrelationId"].FirstOrDefault();
+
+            return string.IsNullOrEmpty(correlationId) ? string.Empty : correlationId;
+        }
+
+        public static string GetDssApimURL(HttpRequest req)
         {
             if (req == null)
                 throw new ArgumentNullException("req");

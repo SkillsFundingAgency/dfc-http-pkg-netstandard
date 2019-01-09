@@ -20,7 +20,7 @@ namespace DFC.HTTP.Core.Tests
         }
         
         [Test]
-        public void HttpRequestExtensions_SetContentTypeToApplicationJson_ThrowsArgumentNullException_WhenRequestIsNull()
+        public void HttpRequestHelpers_SetContentTypeToApplicationJson_ThrowsArgumentNullException_WhenRequestIsNull()
         {
             Assert.That(() => HttpRequestHelper.SetContentTypeToApplicationJson(null),
                 Throws.Exception
@@ -28,7 +28,7 @@ namespace DFC.HTTP.Core.Tests
         }
 
         [Test]
-        public void HttpRequestExtensions_UpdatesContentType_WhenSetContentTypeToApplicationJsonIsCalled()
+        public void HttpRequestHelpers_UpdatesContentType_WhenSetContentTypeToApplicationJsonIsCalled()
         {
             _request.ContentType = ContentApplicationType.ApplicationXML;
             HttpRequestHelper.SetContentTypeToApplicationJson(_request);
@@ -36,7 +36,7 @@ namespace DFC.HTTP.Core.Tests
         }
 
         [Test]
-        public void HttpRequestExtensions_GetQueryString_ThrowsArgumentNullException_WhenRequestIsNull()
+        public void HttpRequestHelpers_GetQueryString_ThrowsArgumentNullException_WhenRequestIsNull()
         {
             Assert.That(() => HttpRequestHelper.GetQueryString(null, string.Empty),
                 Throws.Exception
@@ -44,14 +44,14 @@ namespace DFC.HTTP.Core.Tests
         }
 
         [Test]
-        public void HttpRequestExtensions_GetQueryString_ReturnsEmptyString_WhenQueryStringCannotBeFound()
+        public void HttpRequestHelpers_GetQueryString_ReturnsEmptyString_WhenQueryStringCannotBeFound()
         {
            var result = HttpRequestHelper.GetQueryString(_request, "Test");
             Assert.AreEqual(result, string.Empty);
         }
 
         [Test]
-        public void HttpRequestExtensions_GetQueryString_ReturnsQueryString_WhenQueryStringExists()
+        public void HttpRequestHelpers_GetQueryString_ReturnsQueryString_WhenQueryStringExists()
         {
             _request.QueryString= new QueryString("?GivenName=John");
 
@@ -60,7 +60,7 @@ namespace DFC.HTTP.Core.Tests
         }
 
         [Test]
-        public void HttpRequestExtensions_GetHeader_ThrowsArgumentNullException_WhenRequestIsNull()
+        public void HttpRequestHelpers_GetHeader_ThrowsArgumentNullException_WhenRequestIsNull()
         {
             Assert.That(() => HttpRequestHelper.GetHeader(null, string.Empty),
                 Throws.Exception
@@ -68,14 +68,14 @@ namespace DFC.HTTP.Core.Tests
         }
 
         [Test]
-        public void HttpRequestExtensions_GetHeader_ReturnsEmptyString_WhenHeaderDoesNotExist()
+        public void HttpRequestHelpers_GetHeader_ReturnsEmptyString_WhenHeaderDoesNotExist()
         {
             var result = HttpRequestHelper.GetHeader(_request, "Header");
             Assert.AreEqual(result, string.Empty);
         }
 
         [Test]
-        public void HttpRequestExtensions_GetHeader_ReturnsHeaderValue_WhenHeaderExists()
+        public void HttpRequestHelpers_GetHeader_ReturnsHeaderValue_WhenHeaderExists()
         {
             _request.Headers.TryAdd("Number", "0123456789");
             var result = HttpRequestHelper.GetHeader(_request, "Number");
@@ -84,48 +84,73 @@ namespace DFC.HTTP.Core.Tests
 
 
         [Test]
-        public void HttpRequestExtensions_GetTouchpointId_ThrowsArgumentNullException_WhenRequestIsNull()
+        public void HttpRequestHelpers_GetDssTouchpointId_ThrowsArgumentNullException_WhenRequestIsNull()
         {
-            Assert.That(() => HttpRequestHelper.GetTouchpointId(null),
+            Assert.That(() => HttpRequestHelper.GetDssTouchpointId(null),
                 Throws.Exception
                     .TypeOf<ArgumentNullException>());
         }
 
         [Test]
-        public void HttpRequestExtensions_GetTouchpointId_ReturnsEmptyString_WhenHeaderDoesNotExist()
+        public void HttpRequestHelpers_GetDssTouchpointId_ReturnsEmptyString_WhenHeaderDoesNotExist()
         {
-            var result = HttpRequestHelper.GetTouchpointId(_request);
+            var result = HttpRequestHelper.GetDssTouchpointId(_request);
             Assert.AreEqual(result, string.Empty);
         }
 
         [Test]
-        public void HttpRequestExtensions_GetTouchpointId_ReturnsTouchpointId_WhenHeaderExists()
+        public void HttpRequestHelpers_GetDssTouchpointId_ReturnsTouchpointId_WhenHeaderExists()
         {
             _request.Headers.TryAdd("TouchpointId", "0123456789");
-            var result = HttpRequestHelper.GetTouchpointId(_request);
+            var result = HttpRequestHelper.GetDssTouchpointId(_request);
             Assert.AreEqual(result, "0123456789");
         }
 
+
         [Test]
-        public void HttpRequestExtensions_GetApimURL_ThrowsArgumentNullException_WhenRequestIsNull()
+        public void HttpRequestHelpers_GetDssCorrelationId_ThrowsArgumentNullException_WhenRequestIsNull()
         {
-            Assert.That(() => HttpRequestHelper.GetApimURL(null),
+            Assert.That(() => HttpRequestHelper.GetDssTouchpointId(null),
                 Throws.Exception
                     .TypeOf<ArgumentNullException>());
         }
 
         [Test]
-        public void HttpRequestExtensions_GetApimURL_ReturnsEmptyString_WhenHeaderDoesNotExist()
+        public void HttpRequestHelpers_GetDssCorrelationId_ReturnsEmptyString_WhenHeaderDoesNotExist()
         {
-            var result = HttpRequestHelper.GetApimURL(_request);
+            var result = HttpRequestHelper.GetDssTouchpointId(_request);
             Assert.AreEqual(result, string.Empty);
         }
 
         [Test]
-        public void HttpRequestExtensions_GetApimURL_ReturnsApimUrl_WhenHeaderExists()
+        public void HttpRequestHelpers_GetDssCorrelationId_ReturnsDssCorrelationId_WhenHeaderExists()
+        {
+            var correlationId = Guid.NewGuid().ToString();
+            _request.Headers.TryAdd("DssCorrelationId", correlationId);
+            var result = HttpRequestHelper.GetDssCorrelationId(_request);
+            Assert.AreEqual(result, correlationId);
+        }
+
+        [Test]
+        public void HttpRequestHelpers_GetDssApimURL_ThrowsArgumentNullException_WhenRequestIsNull()
+        {
+            Assert.That(() => HttpRequestHelper.GetDssApimURL(null),
+                Throws.Exception
+                    .TypeOf<ArgumentNullException>());
+        }
+
+        [Test]
+        public void HttpRequestHelpers_GetDssApimURL_ReturnsEmptyString_WhenHeaderDoesNotExist()
+        {
+            var result = HttpRequestHelper.GetDssApimURL(_request);
+            Assert.AreEqual(result, string.Empty);
+        }
+
+        [Test]
+        public void HttpRequestHelpers_GetDssApimURL_ReturnsApimUrl_WhenHeaderExists()
         {
             _request.Headers.TryAdd("apimurl", "http://localhost");
-            var result = HttpRequestHelper.GetApimURL(_request);
+            var result = HttpRequestHelper.GetDssApimURL(_request);
             Assert.AreEqual(result, "http://localhost");
         }
 
