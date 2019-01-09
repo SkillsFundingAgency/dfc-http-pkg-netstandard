@@ -134,7 +134,7 @@ namespace DFC.HTTP.Core.Tests
         [Test]
         public void HttpRequestHelpers_GetDssApimURL_ThrowsArgumentNullException_WhenRequestIsNull()
         {
-            Assert.That(() => HttpRequestHelper.GetDssApimURL(null),
+            Assert.That(() => HttpRequestHelper.GetDssApimUrl(null),
                 Throws.Exception
                     .TypeOf<ArgumentNullException>());
         }
@@ -142,7 +142,7 @@ namespace DFC.HTTP.Core.Tests
         [Test]
         public void HttpRequestHelpers_GetDssApimURL_ReturnsEmptyString_WhenHeaderDoesNotExist()
         {
-            var result = HttpRequestHelper.GetDssApimURL(_request);
+            var result = HttpRequestHelper.GetDssApimUrl(_request);
             Assert.AreEqual(result, string.Empty);
         }
 
@@ -150,7 +150,7 @@ namespace DFC.HTTP.Core.Tests
         public void HttpRequestHelpers_GetDssApimURL_ReturnsApimUrl_WhenHeaderExists()
         {
             _request.Headers.TryAdd("apimurl", "http://localhost");
-            var result = HttpRequestHelper.GetDssApimURL(_request);
+            var result = HttpRequestHelper.GetDssApimUrl(_request);
             Assert.AreEqual(result, "http://localhost");
         }
 

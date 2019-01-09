@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
@@ -16,33 +14,16 @@ namespace DFC.HTTP.Core
         public static async Task<T> GetResourceFromRequest<T>(HttpRequest req)
         {
             if (req == null)
-                throw new ArgumentNullException("req");
+                throw new ArgumentNullException(nameof(req));
 
             if (req.Body == null)
-                throw new ArgumentNullException("req.Body");
+                throw new ArgumentNullException(nameof(req.Body));
 
             SetContentTypeToApplicationJson(req);
 
-            string requestBody;
-            try
-            {
-                requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
-            dynamic data;
-
-            try
-            {
-                data = JsonConvert.DeserializeObject<T>(requestBody);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            dynamic data = JsonConvert.DeserializeObject<T>(requestBody);
 
             return data;
         }
@@ -50,7 +31,7 @@ namespace DFC.HTTP.Core
         public static void SetContentTypeToApplicationJson(HttpRequest req)
         {
             if (req == null)
-                throw new ArgumentNullException("req");
+                throw new ArgumentNullException(nameof(req));
 
             req.ContentType = ContentApplicationType.ApplicationJSON;
         }
@@ -58,7 +39,7 @@ namespace DFC.HTTP.Core
         public static string GetQueryString(HttpRequest req, string queryStringKey)
         {
             if (req == null)
-                throw new ArgumentNullException("req");
+                throw new ArgumentNullException(nameof(req));
 
             if (!req.Query.ContainsKey(queryStringKey))
                 return string.Empty;
@@ -70,7 +51,7 @@ namespace DFC.HTTP.Core
         public static string GetHeader(this HttpRequest req, string queryStringKey)
         {
             if (req == null)
-                throw new ArgumentNullException("req");
+                throw new ArgumentNullException(nameof(req));
 
             return !req.Headers.TryGetValue(queryStringKey, out StringValues keys) ? string.Empty : keys.FirstOrDefault();
         }
@@ -78,7 +59,7 @@ namespace DFC.HTTP.Core
         public static string GetDssTouchpointId(HttpRequest req)
         {
             if (req == null)
-                throw new ArgumentNullException("req");
+                throw new ArgumentNullException(nameof(req));
 
             if (!req.Headers.ContainsKey("TouchpointId"))
                 return string.Empty;
@@ -91,7 +72,7 @@ namespace DFC.HTTP.Core
         public static string GetDssCorrelationId(HttpRequest req)
         {
             if (req == null)
-                throw new ArgumentNullException("req");
+                throw new ArgumentNullException(nameof(req));
 
             if (!req.Headers.ContainsKey("DssCorrelationId"))
                 return string.Empty;
@@ -101,21 +82,20 @@ namespace DFC.HTTP.Core
             return string.IsNullOrEmpty(correlationId) ? string.Empty : correlationId;
         }
 
-        public static string GetDssApimURL(HttpRequest req)
+        public static string GetDssApimUrl(HttpRequest req)
         {
             if (req == null)
-                throw new ArgumentNullException("req");
+                throw new ArgumentNullException(nameof(req));
 
             if (!req.Headers.ContainsKey("apimurl"))
                 return string.Empty;
 
-            var ApimURL = req.Headers["apimurl"].FirstOrDefault();
+            var apimUrl = req.Headers["apimurl"].FirstOrDefault();
 
-            if (ApimURL.EndsWith("/"))
-                ApimURL = ApimURL.Substring(0, ApimURL.Length - 1);
+            if (apimUrl.EndsWith("/"))
+                apimUrl = apimUrl.Substring(0, apimUrl.Length - 1);
 
-
-            return string.IsNullOrEmpty(ApimURL) ? string.Empty : ApimURL;
+            return string.IsNullOrEmpty(apimUrl) ? string.Empty : apimUrl;
         }
     }
 }
