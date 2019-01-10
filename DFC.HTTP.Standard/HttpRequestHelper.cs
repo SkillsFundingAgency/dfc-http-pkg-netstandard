@@ -8,10 +8,9 @@ using Newtonsoft.Json;
 
 namespace DFC.HTTP.Standard
 {
-    public static class HttpRequestHelper
+    public class HttpRequestHelper : IHttpRequestHelper
     {
-
-        public static async Task<T> GetResourceFromRequest<T>(HttpRequest req)
+        public async Task<T> GetResourceFromRequest<T>(HttpRequest req)
         {
             if (req == null)
                 throw new ArgumentNullException(nameof(req));
@@ -28,7 +27,7 @@ namespace DFC.HTTP.Standard
             return data;
         }
 
-        public static void SetContentTypeToApplicationJson(HttpRequest req)
+        public void SetContentTypeToApplicationJson(HttpRequest req)
         {
             if (req == null)
                 throw new ArgumentNullException(nameof(req));
@@ -36,7 +35,7 @@ namespace DFC.HTTP.Standard
             req.ContentType = ContentApplicationType.ApplicationJSON;
         }
 
-        public static string GetQueryString(HttpRequest req, string queryStringKey)
+        public string GetQueryString(HttpRequest req, string queryStringKey)
         {
             if (req == null)
                 throw new ArgumentNullException(nameof(req));
@@ -48,7 +47,7 @@ namespace DFC.HTTP.Standard
             return keys.FirstOrDefault();
         }
 
-        public static string GetHeader(this HttpRequest req, string queryStringKey)
+        public string GetHeader( HttpRequest req, string queryStringKey)
         {
             if (req == null)
                 throw new ArgumentNullException(nameof(req));
@@ -56,7 +55,7 @@ namespace DFC.HTTP.Standard
             return !req.Headers.TryGetValue(queryStringKey, out StringValues keys) ? string.Empty : keys.FirstOrDefault();
         }
 
-        public static string GetDssTouchpointId(HttpRequest req)
+        public string GetDssTouchpointId(HttpRequest req)
         {
             if (req == null)
                 throw new ArgumentNullException(nameof(req));
@@ -69,7 +68,7 @@ namespace DFC.HTTP.Standard
             return string.IsNullOrEmpty(touchpointId) ? string.Empty : touchpointId;
         }
 
-        public static string GetDssCorrelationId(HttpRequest req)
+        public string GetDssCorrelationId(HttpRequest req)
         {
             if (req == null)
                 throw new ArgumentNullException(nameof(req));
@@ -82,7 +81,7 @@ namespace DFC.HTTP.Standard
             return string.IsNullOrEmpty(correlationId) ? string.Empty : correlationId;
         }
 
-        public static string GetDssSubcontractorId(HttpRequest req)
+        public string GetDssSubcontractorId(HttpRequest req)
         {
             if (req == null)
                 throw new ArgumentNullException(nameof(req));
@@ -95,7 +94,7 @@ namespace DFC.HTTP.Standard
             return string.IsNullOrEmpty(subcontractorId) ? string.Empty : subcontractorId;
         }
 
-        public static string GetDssApimUrl(HttpRequest req)
+        public string GetDssApimUrl(HttpRequest req)
         {
             if (req == null)
                 throw new ArgumentNullException(nameof(req));

@@ -9,17 +9,17 @@ using Newtonsoft.Json;
 
 namespace DFC.HTTP.Standard
 {
-    public static class HttpResponseMessageHelper
+    public class HttpResponseMessageHelper : IHttpResponseMessageHelper
     {
 
         #region Ok(200)
 
-        public static HttpResponseMessage Ok()
+        public HttpResponseMessage Ok()
         {
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-        public static HttpResponseMessage Ok(Guid id)
+        public HttpResponseMessage Ok(Guid id)
         {
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
@@ -28,7 +28,7 @@ namespace DFC.HTTP.Standard
             };
         }
 
-        public static HttpResponseMessage Ok(string resourceJson)
+        public HttpResponseMessage Ok(string resourceJson)
         {
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
@@ -39,12 +39,12 @@ namespace DFC.HTTP.Standard
         #endregion
 
         #region Created(201) 
-        public static HttpResponseMessage Created()
+        public HttpResponseMessage Created()
         {
             return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
-        public static HttpResponseMessage Created(string resourceJson)
+        public HttpResponseMessage Created(string resourceJson)
         {
             return new HttpResponseMessage(HttpStatusCode.Created)
             {
@@ -56,12 +56,12 @@ namespace DFC.HTTP.Standard
 
         #region NoContent(204)
 
-        public static HttpResponseMessage NoContent()
+        public HttpResponseMessage NoContent()
         {
             return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
 
-        public static HttpResponseMessage NoContent(Guid id)
+        public HttpResponseMessage NoContent(Guid id)
         {
             return new HttpResponseMessage(HttpStatusCode.NoContent)
             {
@@ -75,12 +75,12 @@ namespace DFC.HTTP.Standard
 
         #region BadRequest(400)
 
-        public static HttpResponseMessage BadRequest()
+        public HttpResponseMessage BadRequest()
         {
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-        public static HttpResponseMessage BadRequest(Guid id)
+        public HttpResponseMessage BadRequest(Guid id)
         {
             return new HttpResponseMessage(HttpStatusCode.BadRequest)
             {
@@ -93,12 +93,12 @@ namespace DFC.HTTP.Standard
 
         #region Forbidden(403)
 
-        public static HttpResponseMessage Forbidden()
+        public HttpResponseMessage Forbidden()
         {
             return new HttpResponseMessage(HttpStatusCode.Forbidden);
         }
 
-        public static HttpResponseMessage Forbidden(Guid id)
+        public HttpResponseMessage Forbidden(Guid id)
         {
             return new HttpResponseMessage(HttpStatusCode.Forbidden)
             {
@@ -110,12 +110,12 @@ namespace DFC.HTTP.Standard
         #endregion
 
         #region UnprocessableEntity(422)
-        public static HttpResponseMessage UnprocessableEntity()
+        public HttpResponseMessage UnprocessableEntity()
         {
             return new HttpResponseMessage((HttpStatusCode) 422);
         }
 
-        public static HttpResponseMessage UnprocessableEntity(HttpRequest req)
+        public HttpResponseMessage UnprocessableEntity(HttpRequest req)
         {
             return new HttpResponseMessage((HttpStatusCode)422)
             {
@@ -124,7 +124,7 @@ namespace DFC.HTTP.Standard
             };
         }
 
-        public static HttpResponseMessage UnprocessableEntity(List<ValidationResult> errors)
+        public HttpResponseMessage UnprocessableEntity(List<ValidationResult> errors)
         {
             return new HttpResponseMessage((HttpStatusCode)422)
             {
@@ -133,7 +133,7 @@ namespace DFC.HTTP.Standard
             };
         }
 
-        public static HttpResponseMessage UnprocessableEntity(JsonException requestException)
+        public HttpResponseMessage UnprocessableEntity(JsonException requestException)
         {
             return new HttpResponseMessage((HttpStatusCode)422)
             {
