@@ -8,3 +8,9 @@
 /DFC.HTTP.Core.Tests/bin/Debug/netcoreapp2.1
 /DFC.HTTP.Core.Tests/obj
 /DFC.HTTP.Core/bin/Debug/DFC.HTTP.Core.1.0.0.nupkg
+/DFC.HTTP.Standard/bin/Debug
+/DFC.HTTP.Standard/obj
+/DFC.HTTP.Standard.Tests/obj/Release/netcoreapp2.1
+/DFC.HTTP.Standard.Tests/obj/Debug/netcoreapp2.1
+/DFC.HTTP.Standard.Tests/obj
+/DFC.HTTP.Standard.Tests/bin/Debug/netcoreapp2.1

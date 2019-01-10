@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DFC.HTTP.Core", "DFC.HTTP.Core\DFC.HTTP.Core.csproj", "{E048DCBB-9A5C-4449-B1F0-C2F70B757E5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DFC.HTTP.Standard", "DFC.HTTP.Standard\DFC.HTTP.Standard.csproj", "{E048DCBB-9A5C-4449-B1F0-C2F70B757E5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFC.HTTP.Core.Tests", "DFC.HTTP.Core.Tests\DFC.HTTP.Core.Tests.csproj", "{D02C72CE-5377-4CEF-858E-6780BA935D82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DFC.HTTP.Standard.Tests", "DFC.HTTP.Standard.Tests\DFC.HTTP.Standard.Tests.csproj", "{D02C72CE-5377-4CEF-858E-6780BA935D82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

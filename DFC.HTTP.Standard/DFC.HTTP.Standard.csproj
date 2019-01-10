@@ -5,8 +5,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>ESFA</Authors>
     <Company>ESFA</Company>
-    <Description>HTTP Helpers for Core</Description>
-    <PackageReleaseNotes>HTTP Helpers for Core</PackageReleaseNotes>
+    <Description>HTTP Helpers for DFC Standard</Description>
+    <PackageReleaseNotes>HTTP Helpers for Standard</PackageReleaseNotes>
     <!--<TargetFramework>netcoreapp2.1</TargetFramework>-->
   </PropertyGroup>
 
