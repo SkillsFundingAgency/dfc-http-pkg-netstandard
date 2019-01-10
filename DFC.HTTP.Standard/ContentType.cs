@@ -1,4 +1,4 @@
-﻿namespace DFC.HTTP.Core
+﻿namespace DFC.HTTP.Standard
 {
     public static class ContentApplicationType
     {

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using NUnit.Framework;
 
-namespace DFC.HTTP.Core.Tests
+namespace DFC.HTTP.Standard.Tests
 {
     public class HttpRequestHelperTests
     {
@@ -129,6 +129,29 @@ namespace DFC.HTTP.Core.Tests
             _request.Headers.TryAdd("DssCorrelationId", correlationId);
             var result = HttpRequestHelper.GetDssCorrelationId(_request);
             Assert.AreEqual(result, correlationId);
+        }
+
+        [Test]
+        public void HttpRequestHelpers_GetDssSubcontractorId_ThrowsArgumentNullException_WhenRequestIsNull()
+        {
+            Assert.That(() => HttpRequestHelper.GetDssSubcontractorId(null),
+                Throws.Exception
+                    .TypeOf<ArgumentNullException>());
+        }
+
+        [Test]
+        public void HttpRequestHelpers_GetDssSubcontractorId_ReturnsEmptyString_WhenHeaderDoesNotExist()
+        {
+            var result = HttpRequestHelper.GetDssSubcontractorId(_request);
+            Assert.AreEqual(result, string.Empty);
+        }
+
+        [Test]
+        public void HttpRequestHelpers_GetDssSubcontractorId_ReturnsDssSubcontractorId_WhenHeaderExists()
+        {
+            _request.Headers.TryAdd("DssSubcontractorId", "01234567890123456789");
+            var result = HttpRequestHelper.GetDssSubcontractorId(_request);
+            Assert.AreEqual(result, "01234567890123456789");
         }
 
         [Test]

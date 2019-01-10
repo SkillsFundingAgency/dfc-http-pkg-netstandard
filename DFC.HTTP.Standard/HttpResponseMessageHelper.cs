@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace DFC.HTTP.Core
+namespace DFC.HTTP.Standard
 {
     public static class HttpResponseMessageHelper
     {

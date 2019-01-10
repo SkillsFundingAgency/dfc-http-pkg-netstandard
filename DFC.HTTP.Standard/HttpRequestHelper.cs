@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 
-namespace DFC.HTTP.Core
+namespace DFC.HTTP.Standard
 {
     public static class HttpRequestHelper
     {
@@ -80,6 +80,19 @@ namespace DFC.HTTP.Core
             var correlationId = req.Headers["DssCorrelationId"].FirstOrDefault();
 
             return string.IsNullOrEmpty(correlationId) ? string.Empty : correlationId;
+        }
+
+        public static string GetDssSubcontractorId(HttpRequest req)
+        {
+            if (req == null)
+                throw new ArgumentNullException(nameof(req));
+
+            if (!req.Headers.ContainsKey("DssSubcontractorId"))
+                return string.Empty;
+
+            var subcontractorId = req.Headers["DssSubcontractorId"].FirstOrDefault();
+
+            return string.IsNullOrEmpty(subcontractorId) ? string.Empty : subcontractorId;
         }
 
         public static string GetDssApimUrl(HttpRequest req)
