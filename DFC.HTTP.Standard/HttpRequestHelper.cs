@@ -86,10 +86,10 @@ namespace DFC.HTTP.Standard
             if (req == null)
                 throw new ArgumentNullException(nameof(req));
 
-            if (!req.Headers.ContainsKey("DssSubcontractorId"))
+            if (!req.Headers.ContainsKey("SubcontractorId"))
                 return string.Empty;
 
-            var subcontractorId = req.Headers["DssSubcontractorId"].FirstOrDefault();
+            var subcontractorId = req.Headers["SubcontractorId"].FirstOrDefault();
 
             return string.IsNullOrEmpty(subcontractorId) ? string.Empty : subcontractorId;
         }
