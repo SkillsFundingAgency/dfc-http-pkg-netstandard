@@ -151,7 +151,7 @@ namespace DFC.HTTP.Standard.Tests
         [Test]
         public void HttpRequestHelpers_GetDssSubcontractorId_ReturnsDssSubcontractorId_WhenHeaderExists()
         {
-            _request.Headers.TryAdd("DssSubcontractorId", "01234567890123456789");
+            _request.Headers.TryAdd("SubcontractorId", "01234567890123456789");
             var result = _httpRequestHelper.GetDssSubcontractorId(_request);
             Assert.AreEqual(result, "01234567890123456789");
         }
