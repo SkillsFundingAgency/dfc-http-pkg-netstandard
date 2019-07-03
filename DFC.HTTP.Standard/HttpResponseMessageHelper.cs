@@ -111,7 +111,7 @@ namespace DFC.HTTP.Standard
 
         #region Conflict(409)
 
-        public static HttpResponseMessage Conflict()
+        public HttpResponseMessage Conflict()
         {
             return new HttpResponseMessage(HttpStatusCode.Conflict);
         }

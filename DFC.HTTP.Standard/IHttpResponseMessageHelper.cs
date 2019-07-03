@@ -14,6 +14,7 @@ namespace DFC.HTTP.Standard
         HttpResponseMessage Ok(string resourceJson);
         HttpResponseMessage Created();
         HttpResponseMessage Created(string resourceJson);
+        HttpResponseMessage Conflict();
         HttpResponseMessage NoContent();
         HttpResponseMessage NoContent(Guid id);
         HttpResponseMessage BadRequest();
