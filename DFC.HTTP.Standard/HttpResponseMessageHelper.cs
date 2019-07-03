@@ -109,6 +109,15 @@ namespace DFC.HTTP.Standard
 
         #endregion
 
+        #region Conflict(409)
+
+        public static HttpResponseMessage Conflict()
+        {
+            return new HttpResponseMessage(HttpStatusCode.Conflict);
+        }
+
+        #endregion
+
         #region UnprocessableEntity(422)
         public HttpResponseMessage UnprocessableEntity()
         {
