@@ -28,11 +28,11 @@ namespace DFC.HTTP.Standard
             };
         }
 
-        public HttpResponseMessage Ok(string resourceJson)
+        public HttpResponseMessage Ok(string content)
         {
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent(resourceJson, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
             };
         }
 
@@ -44,11 +44,11 @@ namespace DFC.HTTP.Standard
             return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
-        public HttpResponseMessage Created(string resourceJson)
+        public HttpResponseMessage Created(string content)
         {
             return new HttpResponseMessage(HttpStatusCode.Created)
             {
-                Content = new StringContent(resourceJson, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
             };
         }
 
@@ -59,6 +59,14 @@ namespace DFC.HTTP.Standard
         public HttpResponseMessage NoContent()
         {
             return new HttpResponseMessage(HttpStatusCode.NoContent);
+        }
+
+        public HttpResponseMessage NoContent(string content)
+        {
+            return new HttpResponseMessage(HttpStatusCode.NoContent)
+            {
+                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+            };
         }
 
         public HttpResponseMessage NoContent(Guid id)
@@ -89,6 +97,15 @@ namespace DFC.HTTP.Standard
             };
         }
 
+        public HttpResponseMessage BadRequest(string content)
+        {
+            return new HttpResponseMessage(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+            };
+
+        }
+
         #endregion
 
         #region Forbidden(403)
@@ -107,6 +124,14 @@ namespace DFC.HTTP.Standard
             };
         }
 
+        public HttpResponseMessage Forbidden(string content)
+        {
+            return new HttpResponseMessage(HttpStatusCode.Forbidden)
+            {
+                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+            };
+        }
+
         #endregion
 
         #region Conflict(409)
@@ -114,6 +139,14 @@ namespace DFC.HTTP.Standard
         public HttpResponseMessage Conflict()
         {
             return new HttpResponseMessage(HttpStatusCode.Conflict);
+        }
+
+        public HttpResponseMessage Conflict(string content)
+        {
+            return new HttpResponseMessage(HttpStatusCode.Conflict)
+            {
+                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+            };
         }
 
         #endregion
@@ -124,6 +157,14 @@ namespace DFC.HTTP.Standard
             return new HttpResponseMessage((HttpStatusCode) 422);
         }
 
+        public HttpResponseMessage UnprocessableEntity(string content)
+        {
+            return new HttpResponseMessage((HttpStatusCode) 422)
+            {
+                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+            };
+        }
+        
         public HttpResponseMessage UnprocessableEntity(HttpRequest req)
         {
             return new HttpResponseMessage((HttpStatusCode)422)
