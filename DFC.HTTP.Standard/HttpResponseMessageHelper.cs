@@ -32,7 +32,7 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                Content = new StringContent(content, Encoding.UTF8,
                     ContentApplicationType.ApplicationJSON)
             };
         }
@@ -50,7 +50,7 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.Created)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                Content = new StringContent(content, Encoding.UTF8,
                     ContentApplicationType.ApplicationJSON)
             };
         }
@@ -68,7 +68,7 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.NoContent)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                Content = new StringContent(content, Encoding.UTF8,
                     ContentApplicationType.ApplicationJSON)
             };
         }
@@ -105,7 +105,7 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.BadRequest)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                Content = new StringContent(content, Encoding.UTF8,
                     ContentApplicationType.ApplicationJSON)
             };
 
@@ -143,7 +143,7 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.Forbidden)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                Content = new StringContent(content, Encoding.UTF8,
                     ContentApplicationType.ApplicationJSON)
             };
         }
@@ -170,7 +170,7 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.Conflict)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                Content = new StringContent(content, Encoding.UTF8,
                     ContentApplicationType.ApplicationJSON)
             };
         }
@@ -197,7 +197,7 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage((HttpStatusCode) 422)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                Content = new StringContent(content, Encoding.UTF8,
                     ContentApplicationType.ApplicationJSON)
             };
         }
