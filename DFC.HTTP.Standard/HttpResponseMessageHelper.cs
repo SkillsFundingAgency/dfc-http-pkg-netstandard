@@ -32,13 +32,15 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
             };
         }
 
         #endregion
 
         #region Created(201) 
+
         public HttpResponseMessage Created()
         {
             return new HttpResponseMessage(HttpStatusCode.Created);
@@ -48,7 +50,8 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.Created)
             {
-                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
             };
         }
 
@@ -65,7 +68,8 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.NoContent)
             {
-                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
             };
         }
 
@@ -101,7 +105,18 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.BadRequest)
             {
-                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
+            };
+
+        }
+
+        public HttpResponseMessage BadRequest(HttpErrorResponse errorResponse)
+        {
+            return new HttpResponseMessage(HttpStatusCode.BadRequest)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(errorResponse), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
             };
 
         }
@@ -128,7 +143,17 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.Forbidden)
             {
-                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
+            };
+        }
+
+        public HttpResponseMessage Forbidden(HttpErrorResponse errorResponse)
+        {
+            return new HttpResponseMessage(HttpStatusCode.Forbidden)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(errorResponse), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
             };
         }
 
@@ -145,13 +170,24 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage(HttpStatusCode.Conflict)
             {
-                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
+            };
+        }
+
+        public HttpResponseMessage Conflict(HttpErrorResponse errorResponse)
+        {
+            return new HttpResponseMessage(HttpStatusCode.Conflict)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(errorResponse), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
             };
         }
 
         #endregion
 
         #region UnprocessableEntity(422)
+
         public HttpResponseMessage UnprocessableEntity()
         {
             return new HttpResponseMessage((HttpStatusCode) 422);
@@ -161,13 +197,23 @@ namespace DFC.HTTP.Standard
         {
             return new HttpResponseMessage((HttpStatusCode) 422)
             {
-                Content = new StringContent(content, Encoding.UTF8, ContentApplicationType.ApplicationJSON)
+                Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
             };
         }
-        
+
+        public HttpResponseMessage UnprocessableEntity(HttpErrorResponse errorResponse)
+        {
+            return new HttpResponseMessage((HttpStatusCode) 422)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(errorResponse), Encoding.UTF8,
+                    ContentApplicationType.ApplicationJSON)
+            };
+        }
+
         public HttpResponseMessage UnprocessableEntity(HttpRequest req)
         {
-            return new HttpResponseMessage((HttpStatusCode)422)
+            return new HttpResponseMessage((HttpStatusCode) 422)
             {
                 Content = new StringContent(JsonConvert.SerializeObject(req),
                     Encoding.UTF8, ContentApplicationType.ApplicationJSON)
@@ -176,7 +222,7 @@ namespace DFC.HTTP.Standard
 
         public HttpResponseMessage UnprocessableEntity(List<ValidationResult> errors)
         {
-            return new HttpResponseMessage((HttpStatusCode)422)
+            return new HttpResponseMessage((HttpStatusCode) 422)
             {
                 Content = new StringContent(JsonConvert.SerializeObject(errors),
                     Encoding.UTF8, ContentApplicationType.ApplicationJSON)
@@ -185,7 +231,7 @@ namespace DFC.HTTP.Standard
 
         public HttpResponseMessage UnprocessableEntity(JsonException requestException)
         {
-            return new HttpResponseMessage((HttpStatusCode)422)
+            return new HttpResponseMessage((HttpStatusCode) 422)
             {
                 Content = new StringContent(JsonConvert.SerializeObject(requestException),
                     Encoding.UTF8, ContentApplicationType.ApplicationJSON)
